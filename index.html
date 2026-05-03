@@ -114,9 +114,10 @@
             transition: var(--transition-normal);
             overflow-x: hidden;
             min-height: 100vh;
+            line-height: 1.5;
         }
 
-        /* خلفية متحركة جذابة */
+        /* خلفية متحركة */
         .animated-bg {
             position: fixed;
             top: 0;
@@ -511,16 +512,6 @@
             padding: 3px 10px;
             border-radius: 30px;
             font-weight: 600;
-        }
-        
-        .product-category {
-            font-size: 0.75rem;
-            color: var(--text-muted);
-            margin-bottom: 8px;
-            display: inline-block;
-            background: var(--bg-input);
-            padding: 3px 12px;
-            border-radius: 30px;
         }
         
         .product-desc {
@@ -1050,7 +1041,20 @@
     <h2><i class="fas fa-hand-holding-heart"></i> ادعم الموقع</h2>
     <p>تبرعك يساعدنا على الاستمرار في التطوير وتقديم الأفضل</p>
     <div class="qr-container" id="qrContainer">
-        <!-- سيتم إنشاء أكواد QR هنا عبر JavaScript -->
+        <div class="qr-card">
+            <i class="fab fa-bitcoin" style="color: #f7931a;"></i>
+            <h4>Bitcoin (BTC)</h4>
+            <img src="https://api.qrserver.com/v1/create-qr-code/?size=140x140&data=bc1qyamlrentlllxrlwrlp3jkapw6n8tna2llxta49" alt="BTC QR">
+            <p>bc1qyamlrentlllxrlwrlp3jkapw6n8tna2llxta49</p>
+            <button class="copy-btn" onclick="copyToClipboard('bc1qyamlrentlllxrlwrlp3jkapw6n8tna2llxta49', 'Bitcoin')">📋 نسخ</button>
+        </div>
+        <div class="qr-card">
+            <i class="fab fa-ethereum" style="color: #627eea;"></i>
+            <h4>Ethereum (ETH)</h4>
+            <img src="https://api.qrserver.com/v1/create-qr-code/?size=140x140&data=0x742d35Cc6634C0532925a3b844Bc9e7595f0bEb5" alt="ETH QR">
+            <p>0x742d35Cc6634C0532925a3b844Bc9e7595f0bEb5</p>
+            <button class="copy-btn" onclick="copyToClipboard('0x742d35Cc6634C0532925a3b844Bc9e7595f0bEb5', 'Ethereum')">📋 نسخ</button>
+        </div>
     </div>
 </div>
 
@@ -1143,7 +1147,7 @@
         <i class="fas fa-lock" style="font-size: 2.8rem; color: var(--primary);"></i>
         <h2 style="margin: 15px 0;">🔐 دخول الإدارة</h2>
         <p style="margin-bottom: 15px; color: var(--text-muted);">أدخل كلمة المرور للوصول إلى لوحة التحكم</p>
-        <input type="password" id="adminPassword" placeholder="كلمة المرور" autocomplete="off">
+        <input type="password" id="adminPassword" placeholder="كلمة المرور" autocomplete="off" style="width:100%; padding:12px; border-radius:30px; border:1px solid var(--border-color); background:var(--bg-input); color:var(--text-primary); margin-bottom:15px;">
         <button id="verifyAdminBtn" class="btn-primary" style="width: 100%; margin-bottom: 10px;">تسجيل الدخول</button>
         <button id="closeLoginBtn" class="btn-primary" style="width: 100%; background: var(--text-muted);">إلغاء</button>
     </div>
@@ -1321,8 +1325,6 @@
             if (m === '<') return '&lt;';
             if (m === '>') return '&gt;';
             return m;
-        }).replace(/[\uD800-\uDBFF][\uDC00-\uDFFF]/g, function(c) {
-            return c;
         });
     }
     
@@ -1396,15 +1398,21 @@
     }
     
     // أحداث نافذة الطلب
-    document.getElementById('copyEmailBtn')?.addEventListener('click', copyAdminEmail);
-    document.getElementById('closeOrderModalBtn')?.addEventListener('click', closeOrderModal);
+    const copyEmailBtn = document.getElementById('copyEmailBtn');
+    const closeOrderModalBtn = document.getElementById('closeOrderModalBtn');
+    const orderModal = document.getElementById('orderModal');
+    
+    if (copyEmailBtn) copyEmailBtn.addEventListener('click', copyAdminEmail);
+    if (closeOrderModalBtn) closeOrderModalBtn.addEventListener('click', closeOrderModal);
     
     // إغلاق نافذة الطلب عند الضغط خارجها
-    document.getElementById('orderModal')?.addEventListener('click', function(e) {
-        if (e.target === this) {
-            closeOrderModal();
-        }
-    });
+    if (orderModal) {
+        orderModal.addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeOrderModal();
+            }
+        });
+    }
     
     // ============================================ //
     // ========== لوحة تحكم الإدارة ============== //
@@ -1475,41 +1483,47 @@
         }
     };
     
-    // إضافة منتج جديد
-    document.getElementById('addProductBtn')?.addEventListener('click', () => {
-        const newName = document.getElementById('newName').value;
-        const newDesc = document.getElementById('newDesc').value;
-        const newPrice = document.getElementById('newPrice').value;
-        let newImg = document.getElementById('newImg').value;
-        const newCat = document.getElementById('newCategory').value;
-        
-        if (!newName || !newPrice) {
-            showToast("⚠️ الاسم والسعر مطلوبان", 'warning');
-            return;
-        }
-        
-        if (!newImg) newImg = "https://picsum.photos/id/1/300/200";
-        
-        const newId = Date.now();
-        products.push({
-            id: newId,
-            name: newName,
-            desc: newDesc || "",
-            price: newPrice,
-            category: newCat,
-            img: newImg
+    // ============================================ //
+    // ========== إضافة منتج جديد ================ //
+    // ============================================ //
+    
+    const addProductBtn = document.getElementById('addProductBtn');
+    if (addProductBtn) {
+        addProductBtn.addEventListener('click', () => {
+            const newName = document.getElementById('newName').value;
+            const newDesc = document.getElementById('newDesc').value;
+            const newPrice = document.getElementById('newPrice').value;
+            let newImg = document.getElementById('newImg').value;
+            const newCat = document.getElementById('newCategory').value;
+            
+            if (!newName || !newPrice) {
+                showToast("⚠️ الاسم والسعر مطلوبان", 'warning');
+                return;
+            }
+            
+            if (!newImg) newImg = "https://picsum.photos/id/1/300/200";
+            
+            const newId = Date.now();
+            products.push({
+                id: newId,
+                name: newName,
+                desc: newDesc || "",
+                price: newPrice,
+                category: newCat,
+                img: newImg
+            });
+            
+            saveProductsToLocal();
+            renderProducts();
+            renderAdminList();
+            showToast(`✨ تم إضافة المنتج الجديد: ${newName}`, 'success');
+            
+            document.getElementById('newName').value = '';
+            document.getElementById('newDesc').value = '';
+            document.getElementById('newPrice').value = '';
+            document.getElementById('newImg').value = '';
         });
-        
-        saveProductsToLocal();
-        renderProducts();
-        renderAdminList();
-        showToast(`✨ تم إضافة المنتج الجديد: ${newName}`, 'success');
-        
-        document.getElementById('newName').value = '';
-        document.getElementById('newDesc').value = '';
-        document.getElementById('newPrice').value = '';
-        document.getElementById('newImg').value = '';
-    });
+    }
     
     // ============================================ //
     // ========== صلاحيات المدير ================= //
@@ -1518,55 +1532,78 @@
     const ADMIN_PASSWORD = "0937318709Aa@";
     
     function openLoginModal() {
-        document.getElementById('loginModal').style.display = 'flex';
+        const modal = document.getElementById('loginModal');
+        if (modal) modal.style.display = 'flex';
     }
     
-    document.getElementById('verifyAdminBtn')?.addEventListener('click', () => {
-        const enteredPass = document.getElementById('adminPassword').value;
-        if (enteredPass === ADMIN_PASSWORD) {
-            adminLoggedIn = true;
-            localStorage.setItem('gf_admin_auth', 'true');
-            document.getElementById('loginModal').style.display = 'none';
-            document.getElementById('adminPanelBtn').style.display = 'flex';
-            showToast("🔓 مرحباً أيها المدير! تم فتح لوحة التحكم", 'success');
-        } else {
-            showToast("❌ كلمة المرور خاطئة", 'error');
-        }
-        document.getElementById('adminPassword').value = '';
-    });
+    const verifyAdminBtn = document.getElementById('verifyAdminBtn');
+    const closeLoginBtn = document.getElementById('closeLoginBtn');
+    const adminLoginBtn = document.getElementById('adminLoginBtn');
+    const adminPanelBtn = document.getElementById('adminPanelBtn');
     
-    document.getElementById('closeLoginBtn')?.addEventListener('click', () => {
-        document.getElementById('loginModal').style.display = 'none';
-    });
+    if (verifyAdminBtn) {
+        verifyAdminBtn.addEventListener('click', () => {
+            const enteredPass = document.getElementById('adminPassword').value;
+            if (enteredPass === ADMIN_PASSWORD) {
+                adminLoggedIn = true;
+                localStorage.setItem('gf_admin_auth', 'true');
+                const loginModal = document.getElementById('loginModal');
+                if (loginModal) loginModal.style.display = 'none';
+                if (adminPanelBtn) adminPanelBtn.style.display = 'flex';
+                showToast("🔓 مرحباً أيها المدير! تم فتح لوحة التحكم", 'success');
+                renderAdminList();
+            } else {
+                showToast("❌ كلمة المرور خاطئة", 'error');
+            }
+            document.getElementById('adminPassword').value = '';
+        });
+    }
+    
+    if (closeLoginBtn) {
+        closeLoginBtn.addEventListener('click', () => {
+            const loginModal = document.getElementById('loginModal');
+            if (loginModal) loginModal.style.display = 'none';
+        });
+    }
     
     // التحقق من جلسة المدير السابقة
     if (localStorage.getItem('gf_admin_auth') === 'true') {
         adminLoggedIn = true;
-        document.getElementById('adminPanelBtn').style.display = 'flex';
+        if (adminPanelBtn) adminPanelBtn.style.display = 'flex';
     }
     
     function openAdminModal() {
         if (adminLoggedIn) {
             renderAdminList();
-            document.getElementById('editModal').style.display = 'flex';
+            const editModal = document.getElementById('editModal');
+            if (editModal) editModal.style.display = 'flex';
         } else {
             showToast("⚠️ يرجى تسجيل الدخول أولاً", 'warning');
         }
     }
     
-    document.getElementById('adminPanelBtn')?.addEventListener('click', openAdminModal);
-    document.getElementById('closeModalBtn')?.addEventListener('click', () => {
-        document.getElementById('editModal').style.display = 'none';
-    });
+    if (adminLoginBtn) adminLoginBtn.addEventListener('click', openLoginModal);
+    if (adminPanelBtn) adminPanelBtn.addEventListener('click', openAdminModal);
+    
+    const closeModalBtn = document.getElementById('closeModalBtn');
+    if (closeModalBtn) {
+        closeModalBtn.addEventListener('click', () => {
+            const editModal = document.getElementById('editModal');
+            if (editModal) editModal.style.display = 'none';
+        });
+    }
     
     // ============================================ //
     // ========== البحث ========================== //
     // ============================================ //
     
-    document.getElementById('searchInput')?.addEventListener('input', (e) => {
-        currentSearch = e.target.value;
-        renderProducts();
-    });
+    const searchInput = document.getElementById('searchInput');
+    if (searchInput) {
+        searchInput.addEventListener('input', (e) => {
+            currentSearch = e.target.value;
+            renderProducts();
+        });
+    }
     
     // ============================================ //
     // ========== القائمة الجانبية =============== //
@@ -1575,18 +1612,19 @@
     function toggleSidebar() {
         const sidebar = document.getElementById('sidebar');
         const overlay = document.getElementById('sidebarOverlay');
-        sidebar.classList.toggle('open');
-        overlay.classList.toggle('active');
+        if (sidebar) sidebar.classList.toggle('open');
+        if (overlay) overlay.classList.toggle('active');
     }
     
     function closeSidebar() {
         const sidebar = document.getElementById('sidebar');
         const overlay = document.getElementById('sidebarOverlay');
-        sidebar.classList.remove('open');
-        overlay.classList.remove('active');
+        if (sidebar) sidebar.classList.remove('open');
+        if (overlay) overlay.classList.remove('active');
     }
     
-    document.getElementById('menuToggle')?.addEventListener('click', toggleSidebar);
+    const menuToggle = document.getElementById('menuToggle');
+    if (menuToggle) menuToggle.addEventListener('click', toggleSidebar);
     
     // ============================================ //
     // ========== الثيمات الثلاثة ================= //
@@ -1616,7 +1654,8 @@
         showToast(`🎨 تم التبديل إلى الثيم ${themeName}`, 'success');
     }
     
-    document.getElementById('themeToggleBtn')?.addEventListener('click', cycleTheme);
+    const themeToggleBtn = document.getElementById('themeToggleBtn');
+    if (themeToggleBtn) themeToggleBtn.addEventListener('click', cycleTheme);
     applyTheme(currentTheme);
     
     // ============================================ //
@@ -1624,41 +1663,23 @@
     // ============================================ //
     
     if (localStorage.getItem('gf_terms_accepted')) {
-        document.getElementById('termsModal').style.display = 'none';
+        const termsModal = document.getElementById('termsModal');
+        if (termsModal) termsModal.style.display = 'none';
     }
     
-    document.getElementById('acceptTermsBtn')?.addEventListener('click', () => {
-        localStorage.setItem('gf_terms_accepted', 'true');
-        document.getElementById('termsModal').style.display = 'none';
-        showToast("📜 مرحباً بك في متجر General Fix", 'success');
-    });
+    const acceptTermsBtn = document.getElementById('acceptTermsBtn');
+    if (acceptTermsBtn) {
+        acceptTermsBtn.addEventListener('click', () => {
+            localStorage.setItem('gf_terms_accepted', 'true');
+            const termsModal = document.getElementById('termsModal');
+            if (termsModal) termsModal.style.display = 'none';
+            showToast("📜 مرحباً بك في متجر General Fix", 'success');
+        });
+    }
     
     // ============================================ //
     // ========== أكواد QR للدعم ================= //
     // ============================================ //
-    
-    const btcAddress = "bc1qyamlrentlllxrlwrlp3jkapw6n8tna2llxta49";
-    const ethAddress = "0x742d35Cc6634C0532925a3b844Bc9e7595f0bEb5";
-    
-    const qrContainer = document.getElementById('qrContainer');
-    if (qrContainer) {
-        qrContainer.innerHTML = `
-            <div class="qr-card">
-                <i class="fab fa-bitcoin" style="color: #f7931a;"></i>
-                <h4>Bitcoin (BTC)</h4>
-                <img src="https://api.qrserver.com/v1/create-qr-code/?size=140x140&data=${btcAddress}" alt="BTC QR" loading="lazy">
-                <p>${btcAddress}</p>
-                <button class="copy-btn" onclick="copyToClipboard('${btcAddress}', 'Bitcoin')">📋 نسخ العنوان</button>
-            </div>
-            <div class="qr-card">
-                <i class="fab fa-ethereum" style="color: #627eea;"></i>
-                <h4>Ethereum (ETH)</h4>
-                <img src="https://api.qrserver.com/v1/create-qr-code/?size=140x140&data=${ethAddress}" alt="ETH QR" loading="lazy">
-                <p>${ethAddress}</p>
-                <button class="copy-btn" onclick="copyToClipboard('${ethAddress}', 'Ethereum')">📋 نسخ العنوان</button>
-            </div>
-        `;
-    }
     
     window.copyToClipboard = function(address, currency) {
         navigator.clipboard.writeText(address);
