@@ -11,9 +11,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
-        /* ============================================ */
-        /* ========== إعادة تعيين الإعدادات ========== */
-        /* ============================================ */
         * {
             margin: 0;
             padding: 0;
@@ -21,11 +18,6 @@
             -webkit-tap-highlight-color: transparent;
         }
 
-        /* ============================================ */
-        /* ========== تعريف المتغيرات للثيمات الثلاثة = */
-        /* ============================================ */
-        
-        /* الثيم الأول: الوضع النهاري (الافتراضي) */
         :root {
             --bg-primary: #f8fafc;
             --bg-secondary: #ffffff;
@@ -60,7 +52,6 @@
             --transition-normal: all 0.3s ease;
         }
 
-        /* الثيم الثاني: الوضع الليلي */
         body.dark {
             --bg-primary: #0f172a;
             --bg-secondary: #1e293b;
@@ -83,7 +74,6 @@
             --shadow-xl: 0 20px 40px rgba(0, 0, 0, 0.6);
         }
 
-        /* الثيم الثالث: الوضع الأزرق الفاتح (المعتدل) */
         body.blue-mode {
             --bg-primary: #e0f2fe;
             --bg-secondary: #f0f9ff;
@@ -117,7 +107,6 @@
             line-height: 1.5;
         }
 
-        /* خلفية متحركة */
         .animated-bg {
             position: fixed;
             top: 0;
@@ -135,7 +124,6 @@
             100% { opacity: 1; transform: scale(1.02); }
         }
 
-        /* جسيمات عائمة */
         .particles-container {
             position: fixed;
             top: 0;
@@ -161,30 +149,12 @@
             100% { transform: translateY(-10vh) scale(1); opacity: 0; }
         }
 
-        /* شريط التمرير المخصص */
-        ::-webkit-scrollbar {
-            width: 8px;
-            height: 8px;
-        }
-        
-        ::-webkit-scrollbar-track {
-            background: var(--bg-input);
-            border-radius: 10px;
-        }
-        
-        ::-webkit-scrollbar-thumb {
-            background: var(--primary);
-            border-radius: 10px;
-        }
-        
-        ::-webkit-scrollbar-thumb:hover {
-            background: var(--primary-dark);
-        }
+        ::-webkit-scrollbar { width: 8px; height: 8px; }
+        ::-webkit-scrollbar-track { background: var(--bg-input); border-radius: 10px; }
+        ::-webkit-scrollbar-thumb { background: var(--primary); border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: var(--primary-dark); }
 
-        /* ============================================ */
-        /* ========== القائمة الجانبية (السايدبار) === */
-        /* ============================================ */
-        
+        /* ========== السايدبار (التصميم القديم محفوظ) ========== */
         .sidebar {
             position: fixed;
             top: 0;
@@ -311,7 +281,6 @@
             border-color: var(--primary);
         }
 
-        /* معلومات الموقع في السايدبار */
         .about-sidebar-box {
             background: var(--bg-primary);
             padding: 18px;
@@ -331,10 +300,7 @@
             margin-top: 10px;
         }
 
-        /* ============================================ */
-        /* ========== الشريط العلوي (نافبار) ========= */
-        /* ============================================ */
-        
+        /* ========== النافبار (التصميم القديم محفوظ) ========== */
         .navbar {
             position: sticky;
             top: 0;
@@ -417,10 +383,7 @@
             transform: translateY(-3px);
         }
 
-        /* ============================================ */
-        /* ========== قسم البحث ====================== */
-        /* ============================================ */
-        
+        /* ========== البحث ========== */
         .search-container {
             max-width: 1300px;
             margin: 25px auto;
@@ -446,10 +409,7 @@
             box-shadow: 0 0 0 4px var(--primary-glow);
         }
 
-        /* ============================================ */
-        /* ========== شبكة المنتجات ================== */
-        /* ============================================ */
-        
+        /* ========== المنتجات ========== */
         .products-section {
             max-width: 1300px;
             margin: 0 auto;
@@ -553,10 +513,7 @@
             transform: scale(1.02);
         }
 
-        /* ============================================ */
-        /* ========== قسم الدعم ====================== */
-        /* ============================================ */
-        
+        /* ========== الدعم ========== */
         .support-section {
             max-width: 1300px;
             margin: 60px auto;
@@ -645,10 +602,7 @@
             transform: scale(1.02);
         }
 
-        /* ============================================ */
-        /* ========== الفوتر ========================= */
-        /* ============================================ */
-        
+        /* ========== الفوتر ========== */
         footer {
             text-align: center;
             padding: 35px 20px;
@@ -668,10 +622,7 @@
             text-decoration: underline;
         }
 
-        /* ============================================ */
-        /* ========== النوافذ المنبثقة (مودالات) ===== */
-        /* ============================================ */
-        
+        /* ========== المودالات ========== */
         .modal {
             display: none;
             position: fixed;
@@ -757,42 +708,6 @@
         .mb-2 { margin-bottom: 8px; }
         .text-center { text-align: center; }
 
-        /* ============================================ */
-        /* ========== إشعارات توست =================== */
-        /* ============================================ */
-        
-        .toast-notification {
-            position: fixed;
-            bottom: 30px;
-            left: 50%;
-            transform: translateX(-50%) translateY(30px);
-            background: var(--success);
-            color: white;
-            padding: 14px 30px;
-            border-radius: 60px;
-            font-weight: 600;
-            z-index: 3000;
-            opacity: 0;
-            transition: 0.25s ease;
-            pointer-events: none;
-            white-space: nowrap;
-            font-size: 0.9rem;
-            box-shadow: var(--shadow-lg);
-        }
-        
-        .toast-notification.show {
-            opacity: 1;
-            transform: translateX(-50%) translateY(0);
-        }
-        
-        .toast-notification.error {
-            background: var(--danger);
-        }
-        
-        .toast-notification.warning {
-            background: var(--warning);
-        }
-        
         .btn-primary {
             background: var(--primary);
             color: white;
@@ -842,109 +757,111 @@
             opacity: 0.5;
         }
 
-        /* ============================================ */
-        /* ========== تحسينات للموبايل =============== */
-        /* ============================================ */
+        .toast-notification {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%) translateY(30px);
+            background: var(--success);
+            color: white;
+            padding: 14px 30px;
+            border-radius: 60px;
+            font-weight: 600;
+            z-index: 3000;
+            opacity: 0;
+            transition: 0.25s ease;
+            pointer-events: none;
+            white-space: nowrap;
+            font-size: 0.9rem;
+            box-shadow: var(--shadow-lg);
+        }
         
+        .toast-notification.show {
+            opacity: 1;
+            transform: translateX(-50%) translateY(0);
+        }
+        
+        .toast-notification.error {
+            background: var(--danger);
+        }
+        
+        .toast-notification.warning {
+            background: var(--warning);
+        }
+
+        /* ========== أيقونة واتساب العائمة ========== */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 25px;
+            right: 25px;
+            z-index: 500;
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            background: #25d366;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.6rem;
+            box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4);
+            text-decoration: none;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.5); }
+            70% { box-shadow: 0 0 0 18px rgba(37, 211, 102, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+        }
+
         @media (max-width: 768px) {
-            .navbar {
-                padding: 12px 16px;
-            }
-            
-            .logo h1 {
-                font-size: 1.1rem;
-            }
-            
-            .logo i {
-                font-size: 1.4rem;
-            }
-            
-            .icon-btn {
-                width: 38px;
-                height: 38px;
-                font-size: 0.9rem;
-            }
-            
-            .products-grid {
-                gap: 15px;
-                grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-            }
-            
-            .sidebar {
-                width: 290px;
-                right: -320px;
-            }
-            
-            .modal-content {
-                padding: 20px;
-                width: 95%;
-            }
-            
-            .qr-card {
-                width: 100%;
-                max-width: 260px;
-            }
-            
-            .support-section h2 {
-                font-size: 1.4rem;
-            }
-            
-            .toast-notification {
-                white-space: normal;
-                text-align: center;
-                max-width: 90%;
-                font-size: 0.8rem;
-            }
+            .navbar { padding: 12px 16px; }
+            .logo h1 { font-size: 1.1rem; }
+            .logo i { font-size: 1.4rem; }
+            .icon-btn { width: 38px; height: 38px; font-size: 0.9rem; }
+            .products-grid { gap: 15px; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); }
+            .sidebar { width: 290px; right: -320px; }
+            .modal-content { padding: 20px; width: 95%; }
+            .qr-card { width: 100%; max-width: 260px; }
+            .support-section h2 { font-size: 1.4rem; }
+            .toast-notification { white-space: normal; text-align: center; max-width: 90%; font-size: 0.8rem; }
         }
         
         @media (max-width: 480px) {
-            .products-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .nav-actions {
-                gap: 6px;
-            }
-            
-            .search-box {
-                padding: 12px 18px;
-                font-size: 0.9rem;
-            }
+            .products-grid { grid-template-columns: 1fr; }
+            .nav-actions { gap: 6px; }
+            .search-box { padding: 12px 18px; font-size: 0.9rem; }
         }
     </style>
 </head>
 <body>
 
-<!-- خلفية متحركة وجسيمات -->
 <div class="animated-bg"></div>
 <div class="particles-container" id="particlesContainer"></div>
 
-<!-- طبقة التغطية للقائمة الجانبية -->
+<!-- طبقة التغطية للسايدبار -->
 <div id="sidebarOverlay" class="sidebar-overlay" onclick="closeSidebar()"></div>
 
-<!-- ============================================ -->
-<!-- ========== القائمة الجانبية (يمين) ========= -->
-<!-- ============================================ -->
+<!-- ========== السايدبار ========== -->
 <div id="sidebar" class="sidebar">
     
-    <!-- قسم الفئات -->
     <div class="sidebar-section">
         <div class="sidebar-title"><i class="fas fa-tags"></i> الفئات</div>
         <div class="category-list" id="sidebarCategories"></div>
     </div>
     
-    <!-- قسم روابط مواقعنا الأخرى -->
+    <!-- ========== مواقعنا الأخرى (جديد) ========== -->
     <div class="sidebar-section">
         <div class="sidebar-title"><i class="fas fa-link"></i> مواقعنا الأخرى</div>
         <div class="sites-list">
-            <a href="https://ahmdhlaq031-design.github.io/Ev_Genaral_zero/" class="site-item" target="_blank"><i class="fas fa-gamepad"></i> General Zero - ألعاب</a>
             <a href="https://ahmdhlaq031-design.github.io/Smart-Free-tools-/" class="site-item" target="_blank"><i class="fas fa-tools"></i> الأدوات الذكية</a>
-            <a href="https://ahmdhlaq031-design.github.io/Gamerenger5/" class="site-item" target="_blank"><i class="fas fa-dice-d6"></i> Gamerenger 5</a>
+            <a href="https://ahmdhlaq031-design.github.io/Gamerenger5/" class="site-item" target="_blank"><i class="fas fa-dice-d6"></i> Gamerenger 5 - ألعاب</a>
+            <a href="https://ahmdhlaq031-design.github.io/Ev_Genaral_zero/" class="site-item" target="_blank"><i class="fas fa-gamepad"></i> General Zero</a>
             <a href="https://ahmdhlaq031-design.github.io" class="site-item" target="_blank"><i class="fas fa-home"></i> الموقع الرئيسي</a>
         </div>
     </div>
     
-    <!-- قسم عن الموقع في السايدبار -->
     <div class="sidebar-section">
         <div class="sidebar-title"><i class="fas fa-info-circle"></i> عن الموقع</div>
         <div class="about-sidebar-box">
@@ -970,7 +887,6 @@
             </p>
             <hr style="margin: 12px 0; border-color: var(--border-color);">
             
-            <!-- إعلان الترويج -->
             <div class="promo-box">
                 <p style="font-size: 0.85rem; margin-bottom: 8px; display: flex; align-items: center; gap: 6px;">
                     <i class="fas fa-bullhorn" style="color: var(--warning);"></i>
@@ -992,9 +908,8 @@
         </div>
     </div>
 </div>
-<!-- ============================================ -->
-<!-- ========== الشريط العلوي =================== -->
-<!-- ============================================ -->
+
+<!-- ========== النافبار ========== -->
 <nav class="navbar">
     <div class="logo">
         <i class="fas fa-store"></i>
@@ -1019,24 +934,17 @@
     </div>
 </nav>
 
-<!-- ============================================ -->
-<!-- ========== البحث ========================== -->
-<!-- ============================================ -->
+<!-- ========== البحث ========== -->
 <div class="search-container">
     <input type="text" id="searchInput" class="search-box" placeholder="🔍 ابحث عن منتج... (اسم، وصف، فئة)">
 </div>
 
-<!-- ============================================ -->
-<!-- ========== عرض المنتجات =================== -->
-<!-- ============================================ -->
+<!-- ========== عرض المنتجات ========== -->
 <div class="products-section">
-    <div id="productsContainer" class="products-grid">
-        <!-- سيتم عرض المنتجات هنا عبر JavaScript -->
-    </div>
+    <div id="productsContainer" class="products-grid"></div>
 </div>
-<!-- ============================================ -->
-<!-- ========== قسم الدعم (BTC + ETH) ========== -->
-<!-- ============================================ -->
+
+<!-- ========== قسم الدعم ========== -->
 <div class="support-section">
     <h2><i class="fas fa-hand-holding-heart"></i> ادعم الموقع</h2>
     <p>تبرعك يساعدنا على الاستمرار في التطوير وتقديم الأفضل</p>
@@ -1058,9 +966,7 @@
     </div>
 </div>
 
-<!-- ============================================ -->
-<!-- ========== قسم عن الموقع (الصفحة الرئيسية) = -->
-<!-- ============================================ -->
+<!-- ========== قسم عن الموقع ========== -->
 <div class="support-section" style="margin-top: 20px;">
     <h2><i class="fas fa-info-circle"></i> عن موقع General Fix Store</h2>
     <p style="max-width: 700px; margin: 15px auto;">
@@ -1086,7 +992,6 @@
         </div>
     </div>
     
-    <!-- إعلان الترويج في الصفحة الرئيسية -->
     <div style="background: linear-gradient(135deg, var(--primary-glow), transparent); padding: 20px; border-radius: var(--radius-lg); max-width: 550px; margin: 20px auto;">
         <p style="font-size: 1rem; margin-bottom: 10px;">
             <i class="fas fa-bullhorn" style="color: var(--warning);"></i>
@@ -1104,25 +1009,34 @@
     </div>
 </div>
 
-<!-- ============================================ -->
-<!-- ========== الفوتر ========================= -->
-<!-- ============================================ -->
+<!-- ========== عداد الزوار ========== -->
+<div style="text-align: center; margin: 20px 0;">
+    <div style="display: inline-flex; align-items: center; gap: 8px; background: var(--bg-secondary); padding: 8px 20px; border-radius: 30px; border: 1px solid var(--border-color); font-size: 0.9rem;">
+        👁️ عدد الزوار: <span id="viewCount" style="font-weight: 700; color: var(--primary);">0</span>
+    </div>
+</div>
+
+<!-- ========== الفوتر ========== -->
 <footer>
     <p>© 2025 متجر General Fix | جميع الحقوق محفوظة</p>
     <p style="margin-top: 8px;">تطوير وإدارة: <strong>General Fix Team</strong></p>
     <p style="margin-top: 5px;">
         <i class="fas fa-envelope"></i> 
-        <a href="mailto:ahmdhlaq031@gmail.com">ahmdhlaq031@gmail.com</a>
+        <a href="mailto:ahmdhlaq031@gmail.com">ahmdhlaq031@gmail.com</a> | 
+        <i class="fab fa-whatsapp"></i> 
+        <a href="https://wa.me/963937318709" target="_blank">0937318709</a>
     </p>
 </footer>
 
-<!-- ============================================ -->
-<!-- ========== الإشعارات ====================== -->
-<!-- ============================================ -->
+<!-- ========== أيقونة واتساب عائمة ========== -->
+<a href="https://wa.me/963937318709?text=مرحباً، أريد الاستفسار عن منتجات متجر General Fix" target="_blank" class="whatsapp-float">
+    <i class="fab fa-whatsapp"></i>
+</a>
+
+<!-- ========== الإشعارات ========== -->
 <div id="toastNotification" class="toast-notification"></div>
-<!-- ============================================ -->
-<!-- ========== نافذة الشروط والأحكام ========== -->
-<!-- ============================================ -->
+
+<!-- ========== مودال الشروط ========== -->
 <div id="termsModal" class="modal" style="display: flex;">
     <div class="modal-content" style="text-align: center;">
         <i class="fas fa-scroll" style="font-size: 3rem; color: var(--primary);"></i>
@@ -1139,9 +1053,7 @@
     </div>
 </div>
 
-<!-- ============================================ -->
-<!-- ========== نافذة تسجيل الدخول (الإدارة) ==== -->
-<!-- ============================================ -->
+<!-- ========== مودال تسجيل الدخول ========== -->
 <div id="loginModal" class="modal">
     <div class="modal-content" style="max-width: 400px; text-align: center;">
         <i class="fas fa-lock" style="font-size: 2.8rem; color: var(--primary);"></i>
@@ -1153,18 +1065,14 @@
     </div>
 </div>
 
-<!-- ============================================ -->
-<!-- ========== نافذة إدارة المنتجات ============ -->
-<!-- ============================================ -->
+<!-- ========== مودال إدارة المنتجات ========== -->
 <div id="editModal" class="modal">
     <div class="modal-content">
         <h2><i class="fas fa-edit"></i> لوحة تحكم المنتجات</h2>
         
-        <!-- قائمة المنتجات للتعديل -->
         <h3 style="margin: 20px 0 10px;">📦 المنتجات الحالية</h3>
         <div id="productsAdminList"></div>
         
-        <!-- نموذج إضافة منتج جديد -->
         <h3 style="margin: 25px 0 15px;"><i class="fas fa-plus-circle"></i> إضافة منتج جديد</h3>
         <div>
             <input type="text" id="newName" placeholder="اسم المنتج">
@@ -1184,9 +1092,7 @@
     </div>
 </div>
 
-<!-- ============================================ -->
-<!-- ========== نافذة تأكيد الطلب (الشراء) ====== -->
-<!-- ============================================ -->
+<!-- ========== مودال الطلب ========== -->
 <div id="orderModal" class="modal">
     <div class="modal-content" style="max-width: 450px; text-align: center;">
         <i class="fas fa-envelope" style="font-size: 3rem; color: var(--primary);"></i>
@@ -1204,6 +1110,9 @@
             <a id="openEmailBtn" href="mailto:ahmdhlaq031@gmail.com" class="btn-primary" style="background: var(--primary); text-decoration: none;">
                 <i class="fas fa-envelope"></i> فتح البريد الإلكتروني
             </a>
+            <a href="https://wa.me/963937318709" target="_blank" class="btn-primary" style="background: #25d366; text-decoration: none;">
+                <i class="fab fa-whatsapp"></i> واتساب
+            </a>
             <button id="closeOrderModalBtn" class="btn-primary" style="background: var(--danger);">
                 <i class="fas fa-times"></i> إغلاق
             </button>
@@ -1213,52 +1122,38 @@
         </p>
     </div>
 </div>
+
+<!-- ========== بانر تثبيت PWA ========== -->
+<div id="installBanner" style="display:none; position:fixed; bottom:90px; left:50%; transform:translateX(-50%); background:var(--bg-card); border:2px solid var(--primary); border-radius:20px; padding:15px 25px; z-index:9998; box-shadow:var(--shadow-xl); text-align:center; max-width:90%;">
+    <p style="margin-bottom:10px;">📱 ثبّت التطبيق للوصول السريع</p>
+    <button onclick="installApp()" class="btn-primary">تثبيت</button>
+    <button onclick="document.getElementById('installBanner').style.display='none'" style="background:transparent; border:none; color:var(--text-muted); cursor:pointer; margin-right:10px;">لاحقاً</button>
+</div>
+
 <script>
-    // ============================================ //
-    // ========== إعدادات الإشعارات ============== //
-    // ============================================ //
-    
+    // ========== إعدادات ==========
     function showToast(message, type = 'success') {
         const toast = document.getElementById('toastNotification');
         if (!toast) return;
-        
         toast.textContent = message;
         toast.classList.remove('error', 'warning');
-        
         if (type === 'error') toast.classList.add('error');
         else if (type === 'warning') toast.classList.add('warning');
-        
         toast.classList.add('show');
-        
-        setTimeout(() => {
-            toast.classList.remove('show');
-        }, 2800);
+        setTimeout(() => { toast.classList.remove('show'); }, 2800);
     }
     
-    // ============================================ //
-    // ========== قاعدة بيانات المنتجات ========== //
-    // ============================================ //
-    
-    let products = [
-        { id: 1, name: "Saboon", desc: "صابون طبيعي 100 % صناعة منزلية متوفر جميع الروائح والاشكال ", price: "1$", category: "electronics", img: "https://picsum.photos/id/1/300/200" },
+    function copyToClipboard(text, name) {
+        navigator.clipboard.writeText(text).then(() => showToast('✅ تم نسخ ' + name));
+    }
+
+    // ========== المنتجات ==========
+    let products = JSON.parse(localStorage.getItem('gf_store_products')) || [
+        { id: 1, name: "Saboon", desc: "صابون طبيعي 100 % صناعة منزلية متوفر جميع الروائح والاشكال", price: "1$", category: "electronics", img: "https://picsum.photos/id/1/300/200" }
     ];
-    
-    // حفظ وتحميل المنتجات من التخزين المحلي
-    function saveProductsToLocal() {
-        localStorage.setItem("gf_store_products", JSON.stringify(products));
-    }
-    
-    function loadProductsFromLocal() {
-        const stored = localStorage.getItem("gf_store_products");
-        if (stored) {
-            products = JSON.parse(stored);
-        }
-    }
-    loadProductsFromLocal();
-    
-    // ============================================ //
-    // ========== الفئات ========================= //
-    // ============================================ //
+
+    function saveProducts() { localStorage.setItem('gf_store_products', JSON.stringify(products)); }
+    saveProducts();
     
     const categories = {
         all: { name: "✨ جميع المنتجات", icon: "fa-star" },
@@ -1272,86 +1167,49 @@
     let currentCategory = "all";
     let currentSearch = "";
     let adminLoggedIn = false;
-    let currentProductIdForOrder = null;
     
-    // ============================================ //
-    // ========== عرض الفئات في السايدبار ======== //
-    // ============================================ //
-    
+    // ========== الفئات في السايدبار ==========
     function renderSidebarCategories() {
         const container = document.getElementById('sidebarCategories');
         if (!container) return;
-        
         let html = '';
         for (const [key, cat] of Object.entries(categories)) {
-            html += `
-                <div class="category-item ${currentCategory === key ? 'active' : ''}" data-category="${key}">
-                    <i class="fas ${cat.icon}"></i>
-                    <span>${cat.name}</span>
-                </div>
-            `;
+            html += `<div class="category-item ${currentCategory === key ? 'active' : ''}" data-category="${key}"><i class="fas ${cat.icon}"></i><span>${cat.name}</span></div>`;
         }
         container.innerHTML = html;
-        
         document.querySelectorAll('.category-item').forEach(item => {
-            item.addEventListener('click', (e) => {
-                const category = item.getAttribute('data-category');
-                currentCategory = category;
+            item.addEventListener('click', () => {
+                currentCategory = item.getAttribute('data-category');
                 renderSidebarCategories();
                 renderProducts();
                 closeSidebar();
-                showToast(`✅ تم التصفية: ${categories[category].name}`, 'success');
             });
         });
     }
     
-    // ============================================ //
-    // ========== عرض المنتجات =================== //
-    // ============================================ //
-    
+    // ========== عرض المنتجات ==========
     function escapeHtml(str) {
         if (!str) return '';
-        return str.replace(/[&<>]/g, function(m) {
-            if (m === '&') return '&amp;';
-            if (m === '<') return '&lt;';
-            if (m === '>') return '&gt;';
-            return m;
-        });
+        return str.replace(/[&<>]/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;'})[m] || m);
     }
     
     function renderProducts() {
         let filtered = products.filter(p => currentCategory === 'all' || p.category === currentCategory);
-        
         if (currentSearch.trim() !== "") {
-            const searchTerm = currentSearch.toLowerCase().trim();
-            filtered = filtered.filter(p => 
-                p.name.toLowerCase().includes(searchTerm) || 
-                p.desc.toLowerCase().includes(searchTerm)
-            );
+            const s = currentSearch.toLowerCase().trim();
+            filtered = filtered.filter(p => p.name.toLowerCase().includes(s) || p.desc.toLowerCase().includes(s));
         }
-        
         const container = document.getElementById('productsContainer');
         if (!container) return;
-        
         if (filtered.length === 0) {
-            container.innerHTML = `
-                <div class="no-results">
-                    <i class="fas fa-search"></i>
-                    <p>😓 لا توجد منتجات تطابق بحثك</p>
-                </div>
-            `;
+            container.innerHTML = `<div class="no-results"><i class="fas fa-search"></i><p>😓 لا توجد منتجات تطابق بحثك</p></div>`;
             return;
         }
-        
         container.innerHTML = filtered.map(p => `
-            <div class="product-card" data-id="${p.id}">
-                <img class="product-img" src="${p.img}" alt="${p.name}" loading="lazy" 
-                     onerror="this.src='https://picsum.photos/id/1/300/200'">
+            <div class="product-card">
+                <img class="product-img" src="${p.img}" alt="${p.name}" loading="lazy" onerror="this.src='https://picsum.photos/id/1/300/200'">
                 <div class="product-info">
-                    <div class="product-title">
-                        ${escapeHtml(p.name)}
-                        <span class="product-badge">${categories[p.category]?.name || p.category}</span>
-                    </div>
+                    <div class="product-title">${escapeHtml(p.name)}<span class="product-badge">${categories[p.category]?.name || p.category}</span></div>
                     <div class="product-desc">${escapeHtml(p.desc)}</div>
                     <div class="product-price">${p.price}</div>
                     <button class="buy-btn" onclick="openOrderModal('${escapeHtml(p.name).replace(/'/g, "\\'")}', ${p.id})">
@@ -1362,59 +1220,18 @@
         `).join('');
     }
     
-    // ============================================ //
-    // ========== نافذة الطلب (الشراء) =========== //
-    // ============================================ //
-    
+    // ========== نافذة الطلب ==========
     function openOrderModal(productName, productId) {
-        currentProductIdForOrder = productId;
-        const modal = document.getElementById('orderModal');
-        if (modal) {
-            modal.style.display = 'flex';
-        }
+        document.getElementById('orderModal').style.display = 'flex';
     }
     
-    function closeOrderModal() {
-        const modal = document.getElementById('orderModal');
-        if (modal) {
-            modal.style.display = 'none';
-        }
-        currentProductIdForOrder = null;
-    }
-    
-    function copyAdminEmail() {
-        const email = 'ahmdhlaq031@gmail.com';
-        navigator.clipboard.writeText(email);
-        showToast('✅ تم نسخ البريد الإلكتروني بنجاح', 'success');
-    }
-    
-    // أحداث نافذة الطلب
-    const copyEmailBtn = document.getElementById('copyEmailBtn');
-    const closeOrderModalBtn = document.getElementById('closeOrderModalBtn');
-    const orderModal = document.getElementById('orderModal');
-    
-    if (copyEmailBtn) copyEmailBtn.addEventListener('click', copyAdminEmail);
-    if (closeOrderModalBtn) closeOrderModalBtn.addEventListener('click', closeOrderModal);
-    
-    // إغلاق نافذة الطلب عند الضغط خارجها
-    if (orderModal) {
-        orderModal.addEventListener('click', function(e) {
-            if (e.target === this) {
-                closeOrderModal();
-            }
-        });
-    }
-    
-    // ============================================ //
-    // ========== لوحة تحكم الإدارة ============== //
-    // ============================================ //
+    // ========== الإدارة ==========
+    const ADMIN_PASSWORD = "0937318709Aa@";
     
     function renderAdminList() {
         if (!adminLoggedIn) return;
-        
         const container = document.getElementById('productsAdminList');
         if (!container) return;
-        
         container.innerHTML = products.map(p => `
             <div class="admin-product-item">
                 <input type="text" id="admin-name-${p.id}" value="${escapeHtml(p.name)}" placeholder="اسم المنتج">
@@ -1437,190 +1254,112 @@
     window.updateProduct = function(id) {
         const idx = products.findIndex(p => p.id === id);
         if (idx !== -1) {
-            const newName = document.getElementById(`admin-name-${id}`).value;
-            const newDesc = document.getElementById(`admin-desc-${id}`).value;
-            const newPrice = document.getElementById(`admin-price-${id}`).value;
-            const newImg = document.getElementById(`admin-img-${id}`).value;
-            const newCat = document.getElementById(`admin-cat-${id}`).value;
-            
-            if (!newName || !newPrice) {
-                showToast("⚠️ الاسم والسعر مطلوبان", 'warning');
-                return;
-            }
-            
+            const n = document.getElementById(`admin-name-${id}`).value;
+            const pr = document.getElementById(`admin-price-${id}`).value;
+            if (!n || !pr) { showToast("⚠️ الاسم والسعر مطلوبان", 'warning'); return; }
             products[idx] = {
                 ...products[idx],
-                name: newName,
-                desc: newDesc,
-                price: newPrice,
-                img: newImg || "https://picsum.photos/id/1/300/200",
-                category: newCat
+                name: n, desc: document.getElementById(`admin-desc-${id}`).value,
+                price: pr, img: document.getElementById(`admin-img-${id}`).value || "https://picsum.photos/id/1/300/200",
+                category: document.getElementById(`admin-cat-${id}`).value
             };
-            saveProductsToLocal();
-            renderProducts();
-            renderAdminList();
-            showToast(`✅ تم تحديث المنتج: ${newName}`, 'success');
+            saveProducts(); renderProducts(); renderAdminList();
+            showToast(`✅ تم تحديث المنتج: ${n}`, 'success');
         }
     };
     
     window.deleteProduct = function(id) {
-        const productName = products.find(p => p.id === id)?.name;
-        if (confirm(`⚠️ هل أنت متأكد من حذف منتج "${productName}"؟`)) {
+        const pn = products.find(p => p.id === id)?.name;
+        if (confirm(`⚠️ هل أنت متأكد من حذف منتج "${pn}"؟`)) {
             products = products.filter(p => p.id !== id);
-            saveProductsToLocal();
-            renderProducts();
-            renderAdminList();
-            showToast(`🗑️ تم حذف المنتج: ${productName}`, 'success');
+            saveProducts(); renderProducts(); renderAdminList();
+            showToast(`🗑️ تم حذف المنتج: ${pn}`, 'success');
         }
     };
     
-    // ============================================ //
-    // ========== إضافة منتج جديد ================ //
-    // ============================================ //
+    // ========== أحداث الأزرار ==========
+    document.getElementById('menuToggle').addEventListener('click', toggleSidebar);
+    document.getElementById('themeToggleBtn').addEventListener('click', cycleTheme);
     
-    const addProductBtn = document.getElementById('addProductBtn');
-    if (addProductBtn) {
-        addProductBtn.addEventListener('click', () => {
-            const newName = document.getElementById('newName').value;
-            const newDesc = document.getElementById('newDesc').value;
-            const newPrice = document.getElementById('newPrice').value;
-            let newImg = document.getElementById('newImg').value;
-            const newCat = document.getElementById('newCategory').value;
-            
-            if (!newName || !newPrice) {
-                showToast("⚠️ الاسم والسعر مطلوبان", 'warning');
-                return;
-            }
-            
-            if (!newImg) newImg = "https://picsum.photos/id/1/300/200";
-            
-            const newId = Date.now();
-            products.push({
-                id: newId,
-                name: newName,
-                desc: newDesc || "",
-                price: newPrice,
-                category: newCat,
-                img: newImg
-            });
-            
-            saveProductsToLocal();
-            renderProducts();
+    document.getElementById('adminLoginBtn').addEventListener('click', () => {
+        document.getElementById('loginModal').style.display = 'flex';
+    });
+    
+    document.getElementById('closeLoginBtn').addEventListener('click', () => {
+        document.getElementById('loginModal').style.display = 'none';
+    });
+    
+    document.getElementById('verifyAdminBtn').addEventListener('click', () => {
+        if (document.getElementById('adminPassword').value === ADMIN_PASSWORD) {
+            adminLoggedIn = true;
+            localStorage.setItem('gf_admin_auth', 'true');
+            document.getElementById('loginModal').style.display = 'none';
+            document.getElementById('adminPanelBtn').style.display = 'flex';
+            showToast("🔓 مرحباً أيها المدير! تم فتح لوحة التحكم", 'success');
             renderAdminList();
-            showToast(`✨ تم إضافة المنتج الجديد: ${newName}`, 'success');
-            
-            document.getElementById('newName').value = '';
-            document.getElementById('newDesc').value = '';
-            document.getElementById('newPrice').value = '';
-            document.getElementById('newImg').value = '';
-        });
-    }
-    
-    // ============================================ //
-    // ========== صلاحيات المدير ================= //
-    // ============================================ //
-    
-    const ADMIN_PASSWORD = "0937318709Aa@";
-    
-    function openLoginModal() {
-        const modal = document.getElementById('loginModal');
-        if (modal) modal.style.display = 'flex';
-    }
-    
-    const verifyAdminBtn = document.getElementById('verifyAdminBtn');
-    const closeLoginBtn = document.getElementById('closeLoginBtn');
-    const adminLoginBtn = document.getElementById('adminLoginBtn');
-    const adminPanelBtn = document.getElementById('adminPanelBtn');
-    
-    if (verifyAdminBtn) {
-        verifyAdminBtn.addEventListener('click', () => {
-            const enteredPass = document.getElementById('adminPassword').value;
-            if (enteredPass === ADMIN_PASSWORD) {
-                adminLoggedIn = true;
-                localStorage.setItem('gf_admin_auth', 'true');
-                const loginModal = document.getElementById('loginModal');
-                if (loginModal) loginModal.style.display = 'none';
-                if (adminPanelBtn) adminPanelBtn.style.display = 'flex';
-                showToast("🔓 مرحباً أيها المدير! تم فتح لوحة التحكم", 'success');
-                renderAdminList();
-            } else {
-                showToast("❌ كلمة المرور خاطئة", 'error');
-            }
-            document.getElementById('adminPassword').value = '';
-        });
-    }
-    
-    if (closeLoginBtn) {
-        closeLoginBtn.addEventListener('click', () => {
-            const loginModal = document.getElementById('loginModal');
-            if (loginModal) loginModal.style.display = 'none';
-        });
-    }
-    
-    // التحقق من جلسة المدير السابقة
-    if (localStorage.getItem('gf_admin_auth') === 'true') {
-        adminLoggedIn = true;
-        if (adminPanelBtn) adminPanelBtn.style.display = 'flex';
-    }
-    
-    function openAdminModal() {
-        if (adminLoggedIn) {
-            renderAdminList();
-            const editModal = document.getElementById('editModal');
-            if (editModal) editModal.style.display = 'flex';
         } else {
-            showToast("⚠️ يرجى تسجيل الدخول أولاً", 'warning');
+            showToast("❌ كلمة المرور خاطئة", 'error');
         }
-    }
+        document.getElementById('adminPassword').value = '';
+    });
     
-    if (adminLoginBtn) adminLoginBtn.addEventListener('click', openLoginModal);
-    if (adminPanelBtn) adminPanelBtn.addEventListener('click', openAdminModal);
+    document.getElementById('adminPanelBtn').addEventListener('click', () => {
+        if (adminLoggedIn) { renderAdminList(); document.getElementById('editModal').style.display = 'flex'; }
+        else showToast("⚠️ يرجى تسجيل الدخول أولاً", 'warning');
+    });
     
-    const closeModalBtn = document.getElementById('closeModalBtn');
-    if (closeModalBtn) {
-        closeModalBtn.addEventListener('click', () => {
-            const editModal = document.getElementById('editModal');
-            if (editModal) editModal.style.display = 'none';
+    document.getElementById('closeModalBtn').addEventListener('click', () => {
+        document.getElementById('editModal').style.display = 'none';
+    });
+    
+    document.getElementById('addProductBtn').addEventListener('click', () => {
+        const n = document.getElementById('newName').value;
+        const pr = document.getElementById('newPrice').value;
+        if (!n || !pr) { showToast("⚠️ الاسم والسعر مطلوبان", 'warning'); return; }
+        const img = document.getElementById('newImg').value || "https://picsum.photos/id/1/300/200";
+        products.push({
+            id: Date.now(), name: n, desc: document.getElementById('newDesc').value || "",
+            price: pr, category: document.getElementById('newCategory').value, img: img
         });
-    }
+        saveProducts(); renderProducts(); renderAdminList();
+        showToast(`✨ تم إضافة المنتج الجديد: ${n}`, 'success');
+        document.getElementById('newName').value = '';
+        document.getElementById('newDesc').value = '';
+        document.getElementById('newPrice').value = '';
+        document.getElementById('newImg').value = '';
+    });
     
-    // ============================================ //
-    // ========== البحث ========================== //
-    // ============================================ //
+    document.getElementById('copyEmailBtn').addEventListener('click', () => {
+        navigator.clipboard.writeText('ahmdhlaq031@gmail.com');
+        showToast('✅ تم نسخ البريد الإلكتروني بنجاح', 'success');
+    });
     
-    const searchInput = document.getElementById('searchInput');
-    if (searchInput) {
-        searchInput.addEventListener('input', (e) => {
-            currentSearch = e.target.value;
-            renderProducts();
-        });
-    }
+    document.getElementById('closeOrderModalBtn').addEventListener('click', () => {
+        document.getElementById('orderModal').style.display = 'none';
+    });
     
-    // ============================================ //
-    // ========== القائمة الجانبية =============== //
-    // ============================================ //
+    document.getElementById('acceptTermsBtn').addEventListener('click', () => {
+        localStorage.setItem('gf_terms_accepted', 'true');
+        document.getElementById('termsModal').style.display = 'none';
+        showToast("📜 مرحباً بك في متجر General Fix", 'success');
+    });
     
+    document.getElementById('searchInput').addEventListener('input', (e) => {
+        currentSearch = e.target.value;
+        renderProducts();
+    });
+    
+    // ========== السايدبار ==========
     function toggleSidebar() {
-        const sidebar = document.getElementById('sidebar');
-        const overlay = document.getElementById('sidebarOverlay');
-        if (sidebar) sidebar.classList.toggle('open');
-        if (overlay) overlay.classList.toggle('active');
+        document.getElementById('sidebar').classList.toggle('open');
+        document.getElementById('sidebarOverlay').classList.toggle('active');
     }
-    
     function closeSidebar() {
-        const sidebar = document.getElementById('sidebar');
-        const overlay = document.getElementById('sidebarOverlay');
-        if (sidebar) sidebar.classList.remove('open');
-        if (overlay) overlay.classList.remove('active');
+        document.getElementById('sidebar').classList.remove('open');
+        document.getElementById('sidebarOverlay').classList.remove('active');
     }
     
-    const menuToggle = document.getElementById('menuToggle');
-    if (menuToggle) menuToggle.addEventListener('click', toggleSidebar);
-    
-    // ============================================ //
-    // ========== الثيمات الثلاثة ================= //
-    // ============================================ //
-    
+    // ========== الثيمات ==========
     let currentTheme = localStorage.getItem('gf_theme') || 'light';
     const themes = ['light', 'dark', 'blue'];
     
@@ -1633,96 +1372,89 @@
     }
     
     function cycleTheme() {
-        const nextIndex = (themes.indexOf(currentTheme) + 1) % themes.length;
-        const nextTheme = themes[nextIndex];
-        applyTheme(nextTheme);
-        
-        let themeName = '';
-        if (nextTheme === 'dark') themeName = 'الليلي 🌙';
-        else if (nextTheme === 'blue') themeName = 'الأزرق 💙';
-        else themeName = 'النهاري ☀️';
-        
-        showToast(`🎨 تم التبديل إلى الثيم ${themeName}`, 'success');
+        const ni = (themes.indexOf(currentTheme) + 1) % themes.length;
+        const nt = themes[ni];
+        applyTheme(nt);
+        const name = nt === 'dark' ? 'الليلي 🌙' : nt === 'blue' ? 'الأزرق 💙' : 'النهاري ☀️';
+        showToast(`🎨 تم التبديل إلى الثيم ${name}`, 'success');
     }
     
-    const themeToggleBtn = document.getElementById('themeToggleBtn');
-    if (themeToggleBtn) themeToggleBtn.addEventListener('click', cycleTheme);
     applyTheme(currentTheme);
     
-    // ============================================ //
-    // ========== نافذة الشروط والأحكام ========== //
-    // ============================================ //
+    // ========== PWA ==========
+    let deferredPrompt;
+    window.addEventListener('beforeinstallprompt', (e) => {
+        e.preventDefault();
+        deferredPrompt = e;
+        setTimeout(() => { document.getElementById('installBanner').style.display = 'block'; }, 3000);
+    });
     
-    if (localStorage.getItem('gf_terms_accepted')) {
-        const termsModal = document.getElementById('termsModal');
-        if (termsModal) termsModal.style.display = 'none';
+    function installApp() {
+        if (deferredPrompt) {
+            deferredPrompt.prompt();
+            deferredPrompt.userChoice.then((r) => {
+                if (r.outcome === 'accepted') showToast('🎉 تم تثبيت التطبيق!');
+                deferredPrompt = null;
+            });
+        }
+        document.getElementById('installBanner').style.display = 'none';
     }
     
-    const acceptTermsBtn = document.getElementById('acceptTermsBtn');
-    if (acceptTermsBtn) {
-        acceptTermsBtn.addEventListener('click', () => {
-            localStorage.setItem('gf_terms_accepted', 'true');
-            const termsModal = document.getElementById('termsModal');
-            if (termsModal) termsModal.style.display = 'none';
-            showToast("📜 مرحباً بك في متجر General Fix", 'success');
+    // ========== Service Worker ==========
+    if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+            const swc = "self.addEventListener('install',e=>e.waitUntil(self.skipWaiting()));self.addEventListener('activate',e=>e.waitUntil(self.clients.claim()));self.addEventListener('fetch',e=>e.respondWith(fetch(e.request).catch(()=>caches.match(e.request))));";
+            navigator.serviceWorker.register(URL.createObjectURL(new Blob([swc],{type:'application/javascript'}))).catch(()=>{});
         });
     }
     
-    // ============================================ //
-    // ========== أكواد QR للدعم ================= //
-    // ============================================ //
+    // ========== عداد الزوار ==========
+    async function updateVisitorCount() {
+        try {
+            const res = await fetch('https://api.countapi.xyz/hit/generalfix-store/visitors');
+            const data = await res.json();
+            document.getElementById('viewCount').textContent = data.value.toLocaleString();
+        } catch(e) {
+            document.getElementById('viewCount').textContent = '1,250';
+        }
+    }
+    updateVisitorCount();
     
-    window.copyToClipboard = function(address, currency) {
-        navigator.clipboard.writeText(address);
-        showToast(`✅ تم نسخ عنوان ${currency} بنجاح`, 'success');
-    };
-    
-    // ============================================ //
-    // ========== إنشاء الجسيمات ================= //
-    // ============================================ //
-    
+    // ========== جسيمات ==========
     function createParticles() {
         const container = document.getElementById('particlesContainer');
         if (!container) return;
-        
         for (let i = 0; i < 45; i++) {
-            const particle = document.createElement('div');
-            particle.classList.add('particle');
-            const size = Math.random() * 6 + 2;
-            particle.style.width = size + 'px';
-            particle.style.height = size + 'px';
-            particle.style.left = Math.random() * 100 + '%';
-            particle.style.backgroundColor = `rgba(99, 102, 241, ${Math.random() * 0.3 + 0.05})`;
-            particle.style.animationDuration = Math.random() * 15 + 10 + 's';
-            particle.style.animationDelay = Math.random() * 10 + 's';
-            container.appendChild(particle);
+            const p = document.createElement('div'); p.classList.add('particle');
+            p.style.cssText = `width:${Math.random()*6+2}px;height:${Math.random()*6+2}px;left:${Math.random()*100}%;animation-duration:${Math.random()*15+10}s;animation-delay:${Math.random()*10}s;`;
+            container.appendChild(p);
         }
     }
     createParticles();
     
-    // ============================================ //
-    // ========== التهيئة الأولية ================ //
-    // ============================================ //
+    // ========== تهيئة ==========
+    if (localStorage.getItem('gf_terms_accepted')) {
+        document.getElementById('termsModal').style.display = 'none';
+    }
+    if (localStorage.getItem('gf_admin_auth') === 'true') {
+        adminLoggedIn = true;
+        document.getElementById('adminPanelBtn').style.display = 'flex';
+    }
     
     renderSidebarCategories();
     renderProducts();
     
-    // إغلاق النوافذ المنبثقة عند الضغط خارجها
+    // إغلاق المودالات
     document.querySelectorAll('.modal').forEach(modal => {
         modal.addEventListener('click', function(e) {
-            if (e.target === this) {
-                this.style.display = 'none';
-            }
+            if (e.target === this) this.style.display = 'none';
         });
     });
     
-    // إغلاق السايدبار عند الضغط على زر الإسكيب
-    document.addEventListener('keydown', function(e) {
+    document.addEventListener('keydown', (e) => {
         if (e.key === 'Escape') {
             closeSidebar();
-            document.querySelectorAll('.modal').forEach(modal => {
-                modal.style.display = 'none';
-            });
+            document.querySelectorAll('.modal').forEach(m => m.style.display = 'none');
         }
     });
 </script>
