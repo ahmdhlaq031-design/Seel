@@ -1621,19 +1621,33 @@
     }
     updateVisitorCount();
     
-    // ========== جسيمات ==========
-    function createParticles() {
-        var container = document.getElementById('particlesContainer');
-        if (!container) return;
-        for (var i = 0; i < 45; i++) {
-            var particle = document.createElement('div');
-            particle.classList.add('particle');
-            particle.style.cssText = 'width:' + (Math.random() * 6 + 2) + 'px;height:' + (Math.random() * 6 + 2) + 'px;left:' + Math.random() * 100 + '%;animation-duration:' + (Math.random() * 15 + 10) + 's;animation-delay:' + Math.random() * 10 + 's;';
-            container.appendChild(particle);
-        }
-    }
-    createParticles();
+    // ========== عداد الزوار - يبدأ من 9512 ويزداد تلقائياً ==========
+    function updateVisitorCount() {
+    const storageKey = 'gf_store_visitor_count';
+    const START_COUNT = 9512;
     
+    let count = localStorage.getItem(storageKey);
+    
+    if (count === null) {
+    count = START_COUNT;
+    } else {
+    count = parseInt(count) + 1;
+    }
+    
+    localStorage.setItem(storageKey, count);
+    document.getElementById('viewCount').textContent = count.toLocaleString();
+    }
+    
+    // دالة لتعديل العداد يدوياً من وحدة التحكم
+    window.setVisitorCount = function(newCount) {
+    if (typeof newCount === 'number' && newCount >= 0) {
+    localStorage.setItem('gf_store_visitor_count', newCount);
+    updateVisitorCount();
+    console.log(`✅ تم تغيير العداد إلى: ${newCount.toLocaleString()}`);
+    } else {
+    console.log('❌ الرجاء إدخال رقم صحيح');
+    }
+    };
     // ========== تهيئة ==========
     if (localStorage.getItem('gf_terms_accepted')) {
         document.getElementById('termsModal').style.display = 'none';
